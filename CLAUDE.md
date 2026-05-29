@@ -442,21 +442,40 @@ When the user provides a reference image (screenshot) and asks to replicate it:
 ### Workflow
 
 1. **Generate** a single HTML file using Tailwind CSS via CDN. Include all content inline — no external files unless requested.
-2. **Screenshot** the rendered page using Puppeteer or `open` + browser screenshot.
-3. **Compare** the screenshot against the reference image. Check for mismatches in:
-   - Spacing and padding
+2. **Screenshot** the rendered page using Playwright (already installed). Use this exact command:
+
+```python
+python3 - <<'EOF'
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page(viewport={"width": 1280, "height": 900})
+    page.goto("file:///absolute/path/to/your/file.html")
+    page.wait_for_timeout(2000)  # wait for fonts/images to load
+    page.screenshot(path="screenshot_current.png", full_page=True)
+    browser.close()
+    print("Screenshot saved.")
+EOF
+```
+
+3. **Read the screenshot** using the Read tool (it renders images inline) and visually compare against the reference image the user provided.
+4. **Compare** and list every mismatch found:
+   - Spacing and padding (estimate in px)
    - Font sizes, weights, and line heights
    - Colors (exact hex values)
    - Alignment and positioning
    - Border radii, shadows, and effects
    - Image/icon sizing and placement
-4. **Fix** every mismatch found and re-screenshot.
-5. **Repeat** until no visible differences remain — always do at least 2 comparison rounds.
+5. **Fix** every mismatch. Edit the HTML.
+6. **Re-screenshot** and compare again.
+7. **Repeat** steps 4–6 until no visible differences remain — always do at least 2 comparison rounds. Only stop when the user says so.
 
 ### Technical Defaults
 
 - Use Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Use placeholder images from `https://placehold.co/` when source images are not provided
+- Use `https://picsum.photos/seed/<word>/<width>/<height>` for placeholder images — gives real photographs, not colored blocks. Pick seed words relevant to the content topic.
+- For production/flip sites, replace picsum images with real topic-relevant photos (e.g. Unsplash free downloads) as soon as content is available — random photos hurt credibility
 - Single `index.html` file unless the user requests otherwise
 
 ### Rules
@@ -466,6 +485,7 @@ When the user provides a reference image (screenshot) and asks to replicate it:
 - If the user provides CSS classes or style tokens, use them verbatim
 - When reporting mismatches be specific: "heading is 32px but reference shows ~24px"
 - Tailwind via CDN is allowed for recreation tasks — the "no frameworks" rule applies to the web app project only
+- Always delete `screenshot_current.png` after the comparison session — it is a temp file and should not be committed
 
 ---
 
