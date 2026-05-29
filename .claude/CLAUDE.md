@@ -94,6 +94,7 @@ Examples requiring this warning:
 
 ## Gotchas
 
+- `woodworking.html` is the current web app entry point
 - `.DS_Store` — never commit
 - `.claude/settings.local.json` — never commit
 - `.env` — never commit; use `.env.example` as the safe template
