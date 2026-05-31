@@ -48,6 +48,16 @@ paths:
 
 ## Website Design Recreation
 
+### Building From a Reference Site
+
+This applies any time you build or improve a page using another site as a
+reference — not only formal recreation tasks. **Never build blind against a
+reference.** As you work, screenshot **your build** with Playwright and place it
+next to the reference, then close the gaps. When the reference is a live site,
+screenshot it too so you are comparing image to image. Run the compare loop
+below **3–4 times**, with each pass visibly improving the match before you call
+it done.
+
 ### Workflow
 
 1. **Generate** a single HTML file using Tailwind CSS via CDN. Include all content inline.
@@ -71,7 +81,7 @@ EOF
 3. **Read the screenshot** using the Read tool and visually compare against the reference image.
 4. **List every mismatch**: spacing, font sizes/weights, colors (exact hex), alignment, border radii, shadows, image sizing.
 5. **Fix** every mismatch. Edit the HTML.
-6. **Re-screenshot** and compare again. Repeat until no visible differences — always do at least 2 rounds.
+6. **Re-screenshot** and compare again. Repeat until no visible differences — do **3–4 rounds**, each one visibly closing the gap.
 7. Always delete `screenshot_current.png` after the session — never commit it.
 
 ### Rules
