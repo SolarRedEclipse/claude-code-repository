@@ -25,12 +25,23 @@ Confirm: template or component, what it's for, and which file it will land in
 (e.g. `woodworking.html`). One short clarifying question only if genuinely unclear.
 
 ### 2. Find 5–8 references
-Cast a wide net — the user wants real choice, so do not be stingy here:
-- **Components** → search [21st.dev](https://21st.dev).
-- **Full pages / layouts** → browse [godly.website](https://godly.website).
-- **Plus** open `WebSearch` for the specific niche to go beyond those two galleries.
+Always start with the two primary galleries — do not skip them:
+- **Components** → [21st.dev](https://21st.dev).
+- **Full pages / layouts** → [godly.website](https://godly.website).
 
-Collect 5–8 candidate URLs.
+If the theme genuinely isn't represented there, do not force a poor match — fall
+back to a similar curated gallery instead:
+- Full-page inspiration: [Land-book](https://land-book.com),
+  [Lapa Ninja](https://www.lapa.ninja), [Httpster](https://httpster.net),
+  [One Page Love](https://onepagelove.com),
+  [siteInspire](https://www.siteinspire.com),
+  [Awwwards](https://www.awwwards.com), [Refero](https://refero.design).
+- Components: [Tailwind UI](https://tailwindui.com),
+  [shadcn/ui](https://ui.shadcn.com), [Aceternity UI](https://ui.aceternity.com),
+  [Magic UI](https://magicui.design).
+
+Use open `WebSearch` only as a last resort, after the galleries. Cast a wide net
+— the user wants real choice, so collect 5–8 candidate URLs.
 
 ### 3. Screenshot every candidate
 Use the bundled helper (saves full-page PNGs to a temp dir and prints each path):
